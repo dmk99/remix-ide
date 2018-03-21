@@ -52,7 +52,10 @@ jobs:
           key: dep-bundle-3-{{ checksum "package.json" }}
           paths:
             - ~/repo/node_modules
-      - run: cd src/app/debugger/remix-debugger && ./ci/browser_tests.sh
+      - run: npm run lint && npm run test && npm run downloadsolc
+      - run: cd src/app/debugger/remix-debugger
+      - run: npm install && npm run build
+      - run: ./ci/browser_tests.sh
 
 workflows:
   version: 2
